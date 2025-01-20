@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de División de Facturas Detallada</title>
+    <title>Calculo Servicios Pandebonales</title>
     <style>
+        /* ... [Estilos anteriores se mantienen igual] ... */
+
+        /* Nuevo estilo para la marca de agua */
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+            opacity: 0.7;
+            font-family: Arial, sans-serif;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+            user-select: none;
+        }
+
+        .watermark a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .watermark a:hover {
+            text-decoration: underline;
+        }
+
+        /* Resto de estilos anteriores */
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
@@ -17,6 +46,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 40px; /* Agregado para dar espacio a la marca de agua */
         }
         h1, h2 {
             color: #333;
@@ -132,6 +162,11 @@
         <div id="resultado"></div>
     </div>
 
+    <!-- Marca de agua -->
+    <div class="watermark">
+        Dev By Jonathan Zuñiga
+    </div>
+
     <script>
         let contadorPersonas = 0;
 
@@ -176,7 +211,6 @@
                 return;
             }
 
-            // Calcular persona-días totales
             let totalPersonaDias = 0;
             const datosPersonas = [];
 
@@ -194,16 +228,13 @@
                 datosPersonas.push({ nombre, diasUsados });
             });
 
-            // Calcular valor por persona-día
             const valorPorPersonaDia = valorFactura / totalPersonaDias;
 
-            // Calcular el valor para cada persona
             const resultados = datosPersonas.map(persona => ({
                 ...persona,
                 valorAPagar: persona.diasUsados * valorPorPersonaDia
             }));
 
-            // Mostrar resultados
             const resultadoDiv = document.getElementById('resultado');
             let resultadoHtml = `
                 <h2>Resultados del cálculo</h2>
